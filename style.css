@@ -1,0 +1,53 @@
+@import url('https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+
+
+body{
+    background-color: #151719;
+}
+h1{
+    display: flex;
+    justify-content: center;
+    font-family: 'Pixelify Sans', cursive;
+    color: crimson;
+}
+.presents_by{
+    display: flex;
+    justify-content: center;
+    font-family: 'Roboto', sans-serif;
+    color: white;
+}
+.inteface_base{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.field{
+    margin-top: 50px;
+    display: grid;
+    background-color: #2f3133;
+    width: 500px;
+    height: 500px;
+    border-radius: 15px;
+    row-gap: 5px;
+    padding: 5px;
+    box-sizing: border-box;
+}
+.field__line{
+    height: 160px;
+    column-gap: 5px;
+    grid-template-columns: 160px 160px 160px;
+    display: grid;
+}
+.field__cells{
+    border-radius: 12px;
+    background-color: aliceblue;
+}
+.restart_button{
+    margin-top: 20px;
+    padding: 20px 40px;
+    font-family: 'Roboto', sans-serif;
+    border-radius: 15px;
+    color: white;
+    background-color: crimson;
+}
