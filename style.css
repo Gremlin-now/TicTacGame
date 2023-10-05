@@ -42,6 +42,13 @@ h1{
 .field__cells{
     border-radius: 12px;
     background-color: aliceblue;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Roboto', sans-serif;
+    font-size: 42px;
+    font-weight: bold;
+    color: crimson;
 }
 .restart_button{
     margin-top: 20px;
