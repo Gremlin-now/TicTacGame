@@ -4,6 +4,13 @@
 
 body{
     background-color: #151719;
+    color: white;
+    font-family: 'Roboto', sans-serif;
+}
+button{
+    border: none;
+    color: white;
+    font-family: 'Roboto', sans-serif;
 }
 h1{
     display: flex;
@@ -14,8 +21,7 @@ h1{
 .presents_by{
     display: flex;
     justify-content: center;
-    font-family: 'Roboto', sans-serif;
-    color: white;
+    margin-bottom: 50px;
 }
 .inteface_base{
     display: flex;
@@ -23,7 +29,7 @@ h1{
     align-items: center;
 }
 .field{
-    margin-top: 50px;
+    margin-top: 10px;
     display: grid;
     background-color: #2f3133;
     width: 500px;
@@ -32,12 +38,14 @@ h1{
     row-gap: 5px;
     padding: 5px;
     box-sizing: border-box;
+    align-items: center;
+    justify-content: center;
 }
 .field__line{
     height: 160px;
     column-gap: 5px;
     grid-template-columns: 160px 160px 160px;
-    display: grid;
+    display: none;
 }
 .field__cells{
     border-radius: 12px;
@@ -49,12 +57,24 @@ h1{
     font-size: 42px;
     font-weight: bold;
     color: crimson;
+    cursor: pointer;
 }
 .restart_button{
     margin-top: 20px;
     padding: 20px 40px;
-    font-family: 'Roboto', sans-serif;
     border-radius: 15px;
-    color: white;
     background-color: crimson;
+}
+#choice{
+    display: grid;
+    column-gap: 15px;
+    grid-template-columns: 75px 75px;
+}
+#choice>button{
+    font-size: 48px;
+    display: flex;
+    justify-content: center;
+    padding: 25px 25px;
+    background-color: crimson;
+    border-radius: 5px;
 }
