@@ -9,6 +9,18 @@ let fieldButt = [
     document.getElementById("C2"),
     document.getElementById("C3")
 ];
+let valueGameCells = { // Содержит значение ячеек
+    A1:null,
+    A2:null,
+    A3:null,
+    B1:null,
+    B2:null,
+    B3:null,
+    C1:null,
+    C2:null,
+    C3:null
+}
+let message = document.getElementById("message");
 let field_line = document.getElementsByClassName("field__line");
 let counter = 0;
 
@@ -29,6 +41,7 @@ choiceButtContainer.forEach(element => {
         {
             field_line[i].style.display = "grid";
         }
+        message.innerText = ""
         document.getElementById("choice").style.display = "none";
     }, {once:true});
 });
@@ -36,8 +49,39 @@ choiceButtContainer.forEach(element => {
 fieldButt.forEach(element => {
     element.addEventListener("click", function(e){
         counter++;
-        this.innerText = (counter%2==1)?playersMark[0]:playersMark[1];
-        this.disabled = true;
+        valueGameCells[this.id] = (counter%2==1)?playersMark[0]:playersMark[1]
+        this.innerText = valueGameCells[this.id];
+        if(checkWinner()) message.innerText = `Победитель ${checkWinner()}!`
     }, {once:true});
 });
 
+function checkWinner(){
+    let result = false;
+    let array = objectTo2DArray(3);
+    let arrayT = arrayTranspose(array);
+    let diagM = array.map((val, i) => val[i]) //создает массив из элементов главной диагонали массива array
+    let diagS = array.map((val, i) => val[3-i-1])//создает массив из элементов побочной диагонали массива array
+    for(let i = 0; i < 3; i++){
+        if (areAllElementsIdentical(array[i])) result = array[i][0]
+        if (areAllElementsIdentical(arrayT[i])) result = arrayT[i][0]
+    }
+    if(areAllElementsIdentical(diagM)) result = diagM[0]
+    if(areAllElementsIdentical(diagS)) result = diagS[0]
+    return result;
+}
+
+function areAllElementsIdentical(array){ //Проверяет все ли элементы массива идентичны
+    return array.every((val, _, arr) => val === arr[0] && val !=null)
+}
+
+function objectTo2DArray(size){ // Преобразует объект со значениями игрового поля в двумерный массив
+    let array = [];
+    for(let i = 0; i < size; i++){
+        array[i]=Object.entries(valueGameCells).slice(i*size,size*(i+1)).map(entry=>entry[1]);
+    }
+    return array;
+}
+
+function arrayTranspose(array){ // Транспонируем массив
+    return array[0].map((col, i) => array.map(row => row[i]))
+}
