@@ -51,13 +51,27 @@ fieldButt.forEach(element => {
         counter++;
         valueGameCells[this.id] = (counter%2==1)?playersMark[0]:playersMark[1]
         this.innerText = valueGameCells[this.id];
-        if(checkWinner()) message.innerText = `Победитель ${checkWinner()}!`
+        if(checkWinner()){
+            message.innerText = `Победитель ${checkWinner()}!`
+            for(let i = 0; i < field_line.length; i++)
+            {
+                field_line[i].style.display = "none";
+            }
+        }
+        if(checkDraw()){message.innerText = `Ничья`}
     }, {once:true});
 });
-
+function checkDraw(){
+    let arr = objectTo2DArray(valueGameCells, 3);
+    let checkNull = 0;
+    for(let i = 0; i < 3; i++){
+        checkNull += arr[i].filter((val)=>val==null).length
+    }
+    return checkNull == 0;
+}
 function checkWinner(){
     let result = false;
-    let array = objectTo2DArray(3);
+    let array = objectTo2DArray(valueGameCells, 3);
     let arrayT = arrayTranspose(array);
     let diagM = array.map((val, i) => val[i]) //создает массив из элементов главной диагонали массива array
     let diagS = array.map((val, i) => val[3-i-1])//создает массив из элементов побочной диагонали массива array
@@ -74,10 +88,10 @@ function areAllElementsIdentical(array){ //Проверяет все ли эле
     return array.every((val, _, arr) => val === arr[0] && val !=null)
 }
 
-function objectTo2DArray(size){ // Преобразует объект со значениями игрового поля в двумерный массив
+function objectTo2DArray(obj, size){ // Преобразует объект со значениями игрового поля в двумерный массив
     let array = [];
     for(let i = 0; i < size; i++){
-        array[i]=Object.entries(valueGameCells).slice(i*size,size*(i+1)).map(entry=>entry[1]);
+        array[i]=Object.entries(obj).slice(i*size,size*(i+1)).map(entry=>entry[1]);
     }
     return array;
 }
